@@ -14,8 +14,9 @@
 //   ]);
 //   => ['Gale Dekarios', 'Wyll Ravengard', 'Karlach Cliffgate'];
 function getNames(people) {
-  const [firstName, lastName] = people
-  return `${firstName} ${lastName}`
+  let fullName = people
+  .map(people => `${people.firstName} ${people.lastName}`)
+  return fullName
 }
 
 // Given an object representing a person, return their full name (first name and last name).
@@ -50,7 +51,9 @@ function getNameUsingDestructuring(person) {
 //     { firstName: 'Astarion', lastName: 'Ancunin', location: "Baldur's Gate" }
 //   ];
 function getPeopleByLocation(people, location) {
-
+  let locatedPerson = people
+  .filter((people) => people.location === location)
+  return locatedPerson
 }
 
 
@@ -82,12 +85,18 @@ const EN_PIRATE_LOOKUP = {
 };
 
 function translateToPirateTalk(phrase) {
-  for(const word in phrase) {
-    if(word === EN_PIRATE_LOOKUP){
-      ''
+  let pirateStr = Object.values(EN_PIRATE_LOOKUP)
+  let str = phrase
+  for(const word in EN_PIRATE_LOOKUP) {
+    if(word === Object.keys(EN_PIRATE_LOOKUP)){
+      str += pirateStr
+    } if(word !== Object.keys(EN_PIRATE_LOOKUP)) {
+      str += word
     }
-  } return phrase
+  }
+  return str
 }
+
 
 // Return the number of occurrences of each word in a string.
 // This function doesn't handle punctuation and is case-sensitive, so you can
@@ -96,7 +105,9 @@ function translateToPirateTalk(phrase) {
 // Ex.:
 //   wordCount('hello world')
 //   => { hello: 1, world: 1 }
-function wordCount(str) {}
+function wordCount(str) {
+
+}
 
 // Given an object representing a bug, return true if the given bug is
 // available in the given month.
@@ -118,15 +129,7 @@ function wordCount(str) {}
 //     }
 //   }, 1);
 //   => true
-function isBugAvailable(bug, month) {
-  for(let i = 0; i < bug.length; i++) {
-    if(bug[i].months === month){
-      return true
-    } else {
-      return false
-    }
-  } 
-}
+function isBugAvailable(bug, month) {}
 
 // Given an array of objects representing bugs, return an object that'll be
 // used to build a calendar. The keys of the object should be the months of the
@@ -169,21 +172,8 @@ function isBugAvailable(bug, month) {
 //     12: [],
 //   }
 
-function buildBugHuntCalendar(bugs) {
-  let calendar = {}
-  for(const bug of bugs) {
-    for(const months in bug) {
-      if(months >=3){
-        bugs.name
-      } if(months === 3){
-        bugs.name
-      } if(months < 3){
-        bugs.name
-      }
-    }
-  } return calendar
-}
-//starting with an array of objects and returning an object of arrays?
+function buildBugHuntCalendar(bugs) {}
+
 
 export {
   buildBugHuntCalendar,

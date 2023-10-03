@@ -67,6 +67,9 @@ addItem.addEventListener('dblclick', () => {
 // Clicking on "Turn Stuff Red" should make text red and clicking on "Turn
 // Stuff Blue" should make text blue.
 
+//(1) grab from html
+//(2) function
+//(3) event listener
 const redBtn = document.querySelector("#red")
 const blueBtn = document.querySelector("#blue")
 const txt = document.querySelectorAll(".changes-color")
@@ -94,7 +97,11 @@ blueBtn.addEventListener('click', () => {
 //   - calls your function that calculates a factorial
 //   - puts the result of the function inside the "result" span
 
-/// TODO: replace this with your code
+let factorialForm = document.querySelector("#factorial-calculator")
+let factorialInput = document.querySelector("#factorial-input")
+
+const factorial = (num) => {
+}
 
 // Validate a form
 //
@@ -118,10 +125,12 @@ const feedback = document.querySelector(".form-feedback")
 newForm.addEventListener('submit', (e) => {
     e.preventDefault()
     if(newInput.length >= 4) {
+        feedback.innerText = "Thanks for your submission"
+        (feedback.value)
         feedback.style.color = "green"
-        feedback.value = "Thanks for your submission"
     } if(newInput.length < 4){
+        feedback.innerText = "The word must be at least 4 characters long"
+        (feedback.value)
         feedback.style.color = "red"
-        "The word must be at least 4 characters long"
-    }
+    } (feedback.value)
 })
