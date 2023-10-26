@@ -84,17 +84,15 @@ const EN_PIRATE_LOOKUP = {
   hello: 'ahoy',
 };
 
+// I want to grab the key/value pair and return the value of that pair
+// where it appears in the given phrase,
+// If the world is not in the EN_PIRATE_LOOKUP object then return the word 
+// as is
+
 function translateToPirateTalk(phrase) {
-  let pirateStr = Object.values(EN_PIRATE_LOOKUP)
-  let str = phrase
-  for(const word in EN_PIRATE_LOOKUP) {
-    if(word === Object.keys(EN_PIRATE_LOOKUP)){
-      str += pirateStr
-    } if(word !== Object.keys(EN_PIRATE_LOOKUP)) {
-      str += word
-    }
-  }
-  return str
+  for(const [key, value] of Object.entries(EN_PIRATE_LOOKUP)) {
+    phrase = phrase.replace(key, value);
+  } return phrase
 }
 
 
@@ -106,8 +104,16 @@ function translateToPirateTalk(phrase) {
 //   wordCount('hello world')
 //   => { hello: 1, world: 1 }
 function wordCount(str) {
-
-}
+  let wordArr = str.split(" ")
+  let wordCountObj = {}
+  for(let i=0; i < wordArr.length; i++){
+    if(wordCountObj[wordArr[i]]) {
+      wordCountObj[wordArr[i]] += 1
+    } else {
+      wordCountObj[wordArr[i]] = 1
+    }
+  } return wordCountObj
+  } 
 
 // Given an object representing a bug, return true if the given bug is
 // available in the given month.
@@ -129,7 +135,15 @@ function wordCount(str) {
 //     }
 //   }, 1);
 //   => true
-function isBugAvailable(bug, month) {}
+
+function isBugAvailable(bug, month){
+  let availability = bug.availability.months
+  for(let i=0; i < availability.length; i++) {
+    if(availability[i] === month) {
+      return true
+    }
+  } return false
+}
 
 // Given an array of objects representing bugs, return an object that'll be
 // used to build a calendar. The keys of the object should be the months of the
@@ -142,7 +156,7 @@ function isBugAvailable(bug, month) {}
 //     rarity: 'common',
 //     months: [9, 10, 11, 12, 1, 2, 3, 4, 5, 6],
 // }
-//
+
 // Ex.:
 //   const bugs = [
 //     {
@@ -172,7 +186,34 @@ function isBugAvailable(bug, month) {}
 //     12: [],
 //   }
 
-function buildBugHuntCalendar(bugs) {}
+  // given an array of objects, with a nested object with a key that has a array as a value
+  // return an object, with the value of the k/v pair as a array with the name of the bug
+
+  function buildBugHuntCalendar(bugs) {
+    // Create an object to store the bug availability by month
+    const calendar = {};
+    // Iterate through each bug in the array
+    bugs.forEach((bug) => {
+      const { name, availability } = bug;
+      const { months } = availability;
+      // Iterate through the months in which the bug is available
+      months.forEach((month) => {
+        // Check if the month exists in the calendar object, and if not, create an empty array
+        if (!calendar[month]) {
+          calendar[month] = [];
+        }
+        // Add the bug name to the array for the corresponding month
+        calendar[month].push(name);
+      });
+    });
+    // Fill in the missing months with empty arrays
+    for (let month = 1; month <= 12; month++) {
+      if (!calendar[month]) {
+        calendar[month] = [];
+      }
+    }
+    return calendar;
+  }
 
 
 export {

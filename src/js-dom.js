@@ -63,34 +63,35 @@ addItem.addEventListener('dblclick', () => {
 // Users should be able to change the color of any element with the
 // class, "changes-colors", by clicking on the "Turn Stuff Red" button
 // or "Turn Stuff Blue" button.
-//
+
 // Clicking on "Turn Stuff Red" should make text red and clicking on "Turn
 // Stuff Blue" should make text blue.
 
-//(1) grab from html
-//(2) function
-//(3) event listener
 const redBtn = document.querySelector("#red")
 const blueBtn = document.querySelector("#blue")
-const txt = document.querySelectorAll(".changes-color")
+const txt = document.querySelectorAll(".changes-colors")
 
 redBtn.addEventListener('click', () => {
-    txt.style.color = "rgb(255, 0, 0)";
+    for(const element in txt) {
+        element.style.color = "red"
+    } 
 })
 
 blueBtn.addEventListener('click', () => {
-    txt.style.color = "rgb(0, 0, 255)";
+    for(const element in txt) {
+        element.style.color = "blue"
+    }
 })
 
 // Calculate factorial
-//
+
 // The factorial of a number is the product of an integer and all the integers
 // below it. For example, the factorial of 4 is equal to 4 * 3 * 2 * 1 = 24. The
 // factorial of 6 is 6 * 5 * 4 * 3 * 2 * 1 = 720.
-//
+
 // Write the following code to calculate the factorial of a positive integer (you
 // don't need to worry about negative numbers).
-//
+
 // Write a function that calculates the factorial of a positive number Add an
 // event listener that catches when someone clicks on the "calculate" button and:
 //   - gets whatever number is inside the input field
@@ -100,37 +101,36 @@ blueBtn.addEventListener('click', () => {
 let factorialForm = document.querySelector("#factorial-calculator")
 let factorialInput = document.querySelector("#factorial-input")
 
-const factorial = (num) => {
-}
+const calculateFactorial = (num) => {}
 
 // Validate a form
-//
+
 // This form is used to collect word recommendations from users. However, it
 // only accepts words that are at least four characters long. Add code that
 // checks the length of the text entered into the <textarea> when the user
 // submits the form.
-//
+
 //  If the text is three or more characters long, change
 //  the feedback text to say "Thanks for your submission!" and change
 //  the color of the text to green.
-//
+
 // If the text is less than three characters long, change
 // the feedback text to say "The word must be at least 4 characters long." and
 // change the color of the text to red..
 
-const newForm = document.querySelector("#recommend-word")
-const newInput = document.querySelector("#word")
-const feedback = document.querySelector(".form-feedback")
+const validateForm = document.querySelector('#recommend-word')
+const formInput = document.querySelector('#word')
+const formFeedback = document.querySelector('.form-feedback')
 
-newForm.addEventListener('submit', (e) => {
+validateForm.addEventListener('submit', (e) => {
     e.preventDefault()
-    if(newInput.length >= 4) {
-        feedback.innerText = "Thanks for your submission"
-        (feedback.value)
-        feedback.style.color = "green"
-    } if(newInput.length < 4){
-        feedback.innerText = "The word must be at least 4 characters long"
-        (feedback.value)
-        feedback.style.color = "red"
-    } (feedback.value)
+    const word = formInput.value
+
+    if(word.length > 3){
+        formFeedback.innerText = "Thanks for your submission!"
+        formFeedback.style.color = "green"
+    } else {
+        formFeedback.innerText = "The word must be at least 4 characters long"
+        formFeedback.style.color = "red"
+    }
 })
